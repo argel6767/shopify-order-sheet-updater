@@ -1,11 +1,14 @@
 
 import mockData from "../mock-data/MOCK_DATA.json"
+import {DeleteConfirmation} from "./DeleteConfirmation.jsx";
+import {useState} from "react";
 
 export const DataTable = () => {
 
-    const orders = mockData;
+    const [orders, setOrders] = useState(mockData)
+
     return (
-        <main className="w-4/5">
+        <main>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -17,6 +20,7 @@ export const DataTable = () => {
                         <th>Order Confirmation Number</th>
                         <th>Order Date</th>
                         <th>Order Cost</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,6 +32,8 @@ export const DataTable = () => {
                             <td>{order.confirmationNumber}</td>
                             <td>{order.orderDate}</td>
                             <td>{order.total}</td>
+                            <td><DeleteConfirmation confirmationNumber={order.confirmationNumber}
+                            onDelete={() => {setOrders(prev => prev.filter(c => c.confirmationNumber !== order.confirmationNumber));}}/></td>
                         </tr>
                     ))}
                     </tbody>
