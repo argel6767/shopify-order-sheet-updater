@@ -1,13 +1,12 @@
-import LogoAndHeader from './component/LogoAndHeader'
-import DataTable from "./component/DataTable.jsx";
-import './App.css'
+import {Dashboard} from "./component/Dashboard.jsx";
+import LogoAndHeader from "./component/LogoAndHeader.jsx";
 
 function App() {
 
   return (
       <>
-      <LogoAndHeader></LogoAndHeader>
-          <DataTable></DataTable>
+          <LogoAndHeader></LogoAndHeader>
+          <Dashboard/>
       </>
   )
 }

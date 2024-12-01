@@ -8,9 +8,9 @@ export const DataTable = () => {
     const [orders, setOrders] = useState(mockData)
 
     return (
-        <main>
-            <div className="overflow-x-auto">
-                <table className="table">
+        <main className="px-3 py-3">
+            <div className="overflow-x-auto overflow-y-scroll max-h-96">
+                <table className="table table-zebra">
                     {/* head */}
                     <thead>
                     <tr>
