@@ -3,20 +3,19 @@ import {useState} from "react";
 export const UploadExcelFile = ({sendUpFile}) => {
 
     const [isPoppedUp, setIsPoppedUp] = useState(true);
-    const [file, setFile] = useState(null);
 
     const handlePopUp = () => {
         setIsPoppedUp(!isPoppedUp);
     }
 
-    const sendFile = () => {
+    const sendFile = (file) => {
         sendUpFile(file);
     }
 
     const handleFileSubmission = () => {
-        const fileInput = document.getElementById("file-input");
-        setFile(fileInput.files[0]);
+        const file = document.getElementById("file-input").files[0];
         sendFile(file);
+        console.log(file);
         handlePopUp();
     }
 
