@@ -1,27 +1,17 @@
 import {useState} from "react";
-import renderFile from "../excel_file/renderFile.js";
 import close from "../assets/cancel_button.svg"
 
-export const RenderExcelFile = ({excelFile, sendUpData}) => {
-    const [data, setData] = useState([]);
+export const RenderExcelFile = ({rows}) => {
+    const data = rows;
     const [isPoppedUp, setIsPoppedUp] = useState(false);
 
     const handleIsPoppedUp = () => {
         setIsPoppedUp(!isPoppedUp);
     }
 
-    const render = () => {
-        renderFile(excelFile, setData);
-    }
-
-        const viewFile = () => {
-            render();
-            handleIsPoppedUp();
-        }
-
     return (
         <main>
-            <button className="btn btn-primary" onClick={viewFile}>View File</button>
+            <button className="btn btn-primary" onClick={handleIsPoppedUp}>View File</button>
             {isPoppedUp && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="p-6 rounded shadow-lg flex flex-col gap-5 bg-background">

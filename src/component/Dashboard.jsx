@@ -10,14 +10,17 @@ export const Dashboard = () => {
     const handleFile = (file) => {
         setFile(file);
     }
+    const handleData = (newData) => {
+        setData([...data, newData]);
+    }
 
     return (
         <main>
             <DataTable/>
             <span className="flex flex-col justify-center items-center gap-3 pt-2.5">
                 <div className="flex justify-center items-center gap-3 pt-2.5">
-                    <UploadExcelFile sendUpFile={handleFile}/>
-                    <RenderExcelFile excelFile={file}/>
+                    <UploadExcelFile sendUpFile={handleFile} sendUpData={handleData}/>
+                    <RenderExcelFile rows={data}/>
                     <button className="btn btn-primary">Add Row To File</button>
                 </div>
 
