@@ -2,7 +2,7 @@ import DataTable from "./DataTable.jsx";
 import {UploadExcelFile} from "./UploadExcelFile.jsx";
 import {RenderExcelFile} from "./RenderExcelFile.jsx";
 import {useEffect, useState} from "react";
-import {AddRows} from "./AddRows.jsx";
+import addRowsToFile from "../excel_file/addRowsToFile.js";
 
 export const Dashboard = () => {
     const [file, setFile] = useState(null);
@@ -36,7 +36,8 @@ export const Dashboard = () => {
                 <div className="flex justify-center items-center gap-3 pt-2.5 pl-4">
                     <UploadExcelFile sendUpFile={handleFile} sendUpData={handleData}/>
                     <RenderExcelFile rows={data}/>
-                    <AddRows excelFile={file}/>
+                    <AddRows excelFile={file} newData={newData}/>
+                    <button onClick={() => {addRowsToFile(file, newData);}} className="btn btn-primary">Add Rows To File</button>
                 </div>
 
             </span>
