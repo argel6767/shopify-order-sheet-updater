@@ -1,10 +1,9 @@
-import {useEffect, useState} from "react";
-import renderFile from "../excel_file/renderFile.js";
+import { useState} from "react";
+import grabFileRows from "../excel_file/grabFileRows.js";
 
 export const UploadExcelFile = ({sendUpFile, sendUpData}) => {
 
     const [isPoppedUp, setIsPoppedUp] = useState(true);
-    const [data, setData] = useState([]);
     const [hasSent, setHasSent] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -20,15 +19,15 @@ export const UploadExcelFile = ({sendUpFile, sendUpData}) => {
 
     const handleFileSubmission = async () => {
         const file = document.getElementById("file-input").files[0];
+        console.log("trying to read file", file);
         setIsLoading(true);
-        await renderFile(file, setData);
+        const newData = await grabFileRows(file);
+        console.log("newData", newData);
         setIsLoading(false);
-        sendData(data);
+        sendData(newData);
         sendFile(file);
-        console.log(data)
-        setIsLoading(true);
-        console.log(file);
     }
+
 
     const sendData = (rows) => {
         if (!hasSent) {
@@ -45,7 +44,7 @@ export const UploadExcelFile = ({sendUpFile, sendUpData}) => {
                     <div className="p-6 rounded shadow-lg flex flex-col gap-5 bg-background">
                         {isLoading ? <div>Loading...</div> :
                             <><h2 className="text-center text-lg">Upload Shopify Excel File Below</h2>
-                                <input type="file" onChange={handleFileSubmission}
+                                <input type="file" onInput={handleFileSubmission}
                                        className="file-input file-input-bordered w-full max-w-xs" id='file-input'
                                        data-testid="file-input"/>
                                 <button className="btn btn-primary" onClick={handlePopUp}>Close</button>

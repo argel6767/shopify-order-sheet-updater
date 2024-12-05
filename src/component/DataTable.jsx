@@ -3,13 +3,27 @@ import mockData from "../mock-data/MOCK_DATA.json"
 import {DeleteConfirmation} from "./DeleteConfirmation.jsx";
 import {useState} from "react";
 
-export const DataTable = () => {
+export const DataTable = ({sendUpApiData}) => {
 
     const [orders, setOrders] = useState(mockData)
+    const [isConfirmed, setIsConfirmed] = useState(false);
+
+    const handleConfirmed = () => {
+        setIsConfirmed(!isConfirmed);
+    }
+
+    const sendUpData = () => {
+        sendUpApiData(orders);
+    }
+
+    const handleDataCallBack = () => {
+        handleConfirmed();
+        sendUpData();
+    }
 
     return (
         <main className="px-3 py-3">
-            <div className="overflow-x-auto overflow-y-scroll max-h-96">
+            <div className="overflow-x-auto overflow-y-scroll max-h-96  xl:max-h-[500px] 2xl:max-h-[550px]">
                 <table className="table table-zebra">
                     {/* head */}
                     <thead>
@@ -32,13 +46,19 @@ export const DataTable = () => {
                             <td>{order.confirmationNumber}</td>
                             <td>{order.orderDate}</td>
                             <td>{order.total}</td>
-                            <td><DeleteConfirmation confirmationNumber={order.confirmationNumber}
-                            onDelete={() => {setOrders(prev => prev.filter(c => c.confirmationNumber !== order.confirmationNumber));}}/></td>
+                            <td>{!isConfirmed && <DeleteConfirmation confirmationNumber={order.confirmationNumber}
+                                       onDelete={() => {setOrders(prev => prev.filter(c => c.confirmationNumber !== order.confirmationNumber));}}/>}</td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
             </div>
+            <div className="flex justify-center items-center pt-4">
+                {isConfirmed ? <button onClick={handleConfirmed} className="btn btn-primary">Edit</button> :
+                    <button onClick={handleDataCallBack} className="btn btn-primary">Confirm</button>}
+
+            </div>
+
         </main>
     )
 }

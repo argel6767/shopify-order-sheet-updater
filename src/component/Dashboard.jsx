@@ -1,27 +1,42 @@
 import DataTable from "./DataTable.jsx";
 import {UploadExcelFile} from "./UploadExcelFile.jsx";
 import {RenderExcelFile} from "./RenderExcelFile.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {AddRows} from "./AddRows.jsx";
 
 export const Dashboard = () => {
     const [file, setFile] = useState(null);
     const[data, setData] = useState([]);
+    const [newData, setNewData] = useState([]);
 
     const handleFile = (file) => {
         setFile(file);
     }
-    const handleData = (newData) => {
-        setData([...data, newData]);
+
+    const handleData = (fileData) => {
+        console.log("newData", fileData);
+        setData((prevState) => [...prevState, ...fileData]);
     }
+
+    const handleNewData = (apiData) => {
+        console.log("newData", apiData);
+        setNewData((prevState) => [...prevState, ...apiData]);
+    }
+
+    useEffect(() => {
+        console.log(data);
+        console.log(newData);
+        console.log(file);
+    }, [data, file, newData]);
 
     return (
         <main>
-            <DataTable/>
+            <DataTable sendUpApiData={handleNewData}/>
             <span className="flex flex-col justify-center items-center gap-3 pt-2.5">
-                <div className="flex justify-center items-center gap-3 pt-2.5">
+                <div className="flex justify-center items-center gap-3 pt-2.5 pl-4">
                     <UploadExcelFile sendUpFile={handleFile} sendUpData={handleData}/>
                     <RenderExcelFile rows={data}/>
-                    <button className="btn btn-primary">Add Row To File</button>
+                    <AddRows excelFile={file}/>
                 </div>
 
             </span>
