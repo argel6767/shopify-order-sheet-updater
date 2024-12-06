@@ -1,12 +1,31 @@
 
 import mockData from "../mock-data/MOCK_DATA.json"
 import {DeleteConfirmation} from "./DeleteConfirmation.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import grabCustomerData from "../api/grabCustomerData.js";
 
 export const DataTable = ({sendUpApiData}) => {
 
+
+
     const [orders, setOrders] = useState(mockData)
     const [isConfirmed, setIsConfirmed] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    /* commented out until api key is given
+     * useEffect(() => {
+        const getOrders = async () => {
+            const orderList = await grabCustomerData();
+            if (orderList) {
+                setOrders(orderList);
+                setIsLoading(false);
+            }
+        }
+        getOrders();
+    }, [])
+     */
+
+
 
     const handleConfirmed = () => {
         setIsConfirmed(!isConfirmed);
@@ -21,6 +40,7 @@ export const DataTable = ({sendUpApiData}) => {
         sendUpData();
     }
 
+    //TODO add loading component, maybe even try React Query
     return (
         <main className="px-3 py-3">
             <div className="overflow-x-auto overflow-y-scroll max-h-96  xl:max-h-[500px] 2xl:max-h-[550px]">

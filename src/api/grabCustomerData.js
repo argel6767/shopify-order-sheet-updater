@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_KEY = import.meta.env.VITE_SHOPIFY_API_KEY;
 
-const query = "";
+const query = ""; //will be filled once the desired fields are given
 
 
 const grabCustomerData = async () =>  {
