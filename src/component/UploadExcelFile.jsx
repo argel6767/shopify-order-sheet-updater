@@ -1,6 +1,7 @@
 import {useState} from "react";
 import grabFileRows from "../excel_file/grabFileRows.js";
 import {Loading} from "./Loading.jsx";
+import {CloseOutButton} from "./CloseOutButton.jsx";
 
 export const UploadExcelFile = ({sendUpFile, sendUpData}) => {
 
@@ -43,15 +44,15 @@ export const UploadExcelFile = ({sendUpFile, sendUpData}) => {
            <button className="btn btn-primary" onClick={handlePopUp}>Re-Upload File</button>
             {isPoppedUp && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="p-6 rounded shadow-lg flex flex-col gap-5 bg-background">
+                    <div className="p-6 rounded shadow-lg flex flex-col gap-6 bg-background">
                         {isLoading ? <Loading loadingMessage={"Grabbing Excel Rows..."}/> :
-                            <><h2 className="text-center text-lg">Upload Shopify Excel File Below</h2>
-                                <div className="flex items-center justify-center gap-3">
-                                    <input type="file" className="file-input file-input-bordered w-full max-w-xs" id='file-input'
-                                           data-testid="file-input"/>
+                            <>
+                                <CloseOutButton closeFunction={handlePopUp}/>
+                                <h2 className="text-center text-2xl">Upload Shopify Excel File Below</h2>
+                                <div className="flex items-center justify-center gap-3 pb-2">
+                                    <input type="file" className="file-input file-input-bordered w-full max-w-xs" id='file-input' data-testid="file-input"/>
                                     <button className="btn btn-primary" onClick={handleFileSubmission}>Submit</button>
                                 </div>
-                                <button className="btn btn-primary" onClick={handlePopUp}>Close</button>
                             </>}
                     </div>
                 </div>

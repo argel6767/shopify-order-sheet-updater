@@ -25,7 +25,7 @@ export const Dashboard = () => {
 
 
     return (
-        <main>
+        <main className="pb-4">
             <DataTable sendUpApiData={handleNewData}/>
             <span className="flex flex-col justify-center items-center gap-3 pt-2.5">
                 <div className="flex justify-center items-center gap-3 pt-2.5 pl-4">
@@ -33,7 +33,6 @@ export const Dashboard = () => {
                     <RenderExcelFile rows={data}/>
                     <button onClick={() => {addRowsToFile(file, newData);}} className="btn btn-primary">Add Rows To File</button>
                 </div>
-
             </span>
         </main>
     )

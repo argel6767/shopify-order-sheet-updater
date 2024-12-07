@@ -4,7 +4,7 @@ export const CloseOutButton = ({closeFunction}) => {
     return (
         <>
             <div className="flex justify-end items-end">
-                <button className="btn btn-circle bg-secondary" onClick={closeFunction}>
+                <button className="btn btn-circle bg-red-500" onClick={closeFunction}>
                     <img src={close} className="w-6 h-6" alt="Cancel button"/>
                 </button>
             </div>
