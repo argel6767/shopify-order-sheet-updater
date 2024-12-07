@@ -1,5 +1,6 @@
 import {useState} from "react";
 import grabFileRows from "../excel_file/grabFileRows.js";
+import {Loading} from "./Loading.jsx";
 
 export const UploadExcelFile = ({sendUpFile, sendUpData}) => {
 
@@ -43,7 +44,7 @@ export const UploadExcelFile = ({sendUpFile, sendUpData}) => {
             {isPoppedUp && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="p-6 rounded shadow-lg flex flex-col gap-5 bg-background">
-                        {isLoading ? <div>Loading...</div> :
+                        {isLoading ? <Loading loadingMessage={"Grabbing Excel Rows..."}/> :
                             <><h2 className="text-center text-lg">Upload Shopify Excel File Below</h2>
                                 <div className="flex items-center justify-center gap-3">
                                     <input type="file" className="file-input file-input-bordered w-full max-w-xs" id='file-input'
