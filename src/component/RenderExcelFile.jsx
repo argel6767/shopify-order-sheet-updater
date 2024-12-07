@@ -1,5 +1,6 @@
 import {useState} from "react";
 import close from "../assets/cancel_button.svg"
+import {CloseOutButton} from "./CloseOutButton.jsx";
 
 export const RenderExcelFile = ({rows}) => {
     const data = rows;
@@ -15,11 +16,7 @@ export const RenderExcelFile = ({rows}) => {
             {isPoppedUp && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="p-6 rounded shadow-lg flex flex-col gap-5 bg-background">
-                        <div className="flex justify-end items-end">
-                            <button className="btn btn-circle bg-secondary" onClick={handleIsPoppedUp}>
-                                <img src={close} className="w-6 h-6" alt="Cancel button"/>
-                            </button>
-                        </div>
+                        <CloseOutButton closeFunction={handleIsPoppedUp}/>
                         <div className="overflow-x-auto overflow-y-scroll max-w-6xl max-h-[550px] p-4">
                             <table className="table table-zebra text-xs">
                                 <tbody>
