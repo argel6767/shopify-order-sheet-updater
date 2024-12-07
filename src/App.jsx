@@ -1,13 +1,20 @@
 import {Dashboard} from "./component/Dashboard.jsx";
 import LogoAndHeader from "./component/LogoAndHeader.jsx";
+import {SignedIn, SignedOut} from "@clerk/clerk-react";
+import {SignInPage} from "./component/SignInPage.jsx";
 
 function App() {
 
   return (
-      <>
-          <LogoAndHeader></LogoAndHeader>
-          <Dashboard/>
-      </>
+      <header>
+          <SignedOut>
+              <SignInPage/>
+          </SignedOut>
+          <SignedIn>
+              <LogoAndHeader></LogoAndHeader>
+              <Dashboard/>
+          </SignedIn>
+      </header>
   )
 }
 
