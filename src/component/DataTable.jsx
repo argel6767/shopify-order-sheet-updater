@@ -43,7 +43,7 @@ export const DataTable = ({sendUpApiData}) => {
     //TODO add loading component, maybe even try React Query
     return (
         <main className="px-3 py-3">
-            <div className="overflow-x-auto overflow-y-scroll max-h-96  xl:max-h-[500px] 2xl:max-h-[550px]">
+            <div className="overflow-x-auto overflow-y-scroll max-h-96 xl:max-h-[500px] 2xl:max-h-[550px]">
                 <table className="table table-zebra">
                     {/* head */}
                     <thead>

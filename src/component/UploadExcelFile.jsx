@@ -26,6 +26,7 @@ export const UploadExcelFile = ({sendUpFile, sendUpData}) => {
         setIsLoading(false);
         sendData(newData);
         sendFile(file);
+        setIsPoppedUp(false);
     }
 
 
@@ -44,9 +45,11 @@ export const UploadExcelFile = ({sendUpFile, sendUpData}) => {
                     <div className="p-6 rounded shadow-lg flex flex-col gap-5 bg-background">
                         {isLoading ? <div>Loading...</div> :
                             <><h2 className="text-center text-lg">Upload Shopify Excel File Below</h2>
-                                <input type="file" onInput={handleFileSubmission}
-                                       className="file-input file-input-bordered w-full max-w-xs" id='file-input'
-                                       data-testid="file-input"/>
+                                <div className="flex items-center justify-center gap-3">
+                                    <input type="file" className="file-input file-input-bordered w-full max-w-xs" id='file-input'
+                                           data-testid="file-input"/>
+                                    <button className="btn btn-primary" onClick={handleFileSubmission}>Submit</button>
+                                </div>
                                 <button className="btn btn-primary" onClick={handlePopUp}>Close</button>
                             </>}
                     </div>
